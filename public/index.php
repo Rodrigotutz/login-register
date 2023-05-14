@@ -1,7 +1,3 @@
 <?php 
 
-require __DIR__ . "/../vendor/autoload.php";
-
-echo getenv("APP_URL");
-echo "<br>";
-echo getenv("APP_NAME");
+require __DIR__ . "/../app/core/boot.php";
