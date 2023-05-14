@@ -1,0 +1,13 @@
+.form-floating input {
+    border: none;
+    border-bottom: 1px solid #0000002d;
+    border-radius: 0;
+}
+
+.form-floating label {
+    opacity: 0.8;
+}
+
+.form-check label {
+    opacity: 0.8;
+}
