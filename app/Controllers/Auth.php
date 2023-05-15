@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Helpers\Controller;
+use App\Core\Controller;
+use App\Models\User;
 
 class Auth extends Controller {
 
@@ -10,11 +11,23 @@ class Auth extends Controller {
         parent::__construct($router);
     }
 
-    public function login(): void {
-        $this->view->addData([
-            "title" => "Página de Login"
-        ]);
-        echo $this->view->render('auth/login');
+    public function register($data) {
+
+        $newUser = new User();
+        $newUser->first_name =  filter_var($data['first_name'], FILTER_DEFAULT);
+        $newUser->last_name =  filter_var($data['last_name'], FILTER_DEFAULT);
+        $newUser->email =  filter_var($data['email'], FILTER_DEFAULT);
+        $newUser->phone =  filter_var($data['phone'], FILTER_DEFAULT);
+        $newUser->password =  filter_var($data['password'], FILTER_DEFAULT);
+        $newUser->password_re =  filter_var($data['password_re'], FILTER_DEFAULT);
+
+        if($newUser->password === $newUser->password_re) {
+            $newUser->save();
+            echo "Usuário salvo";
+        } else {
+            echo "Senha diferentes";
+        }
+
     }
 
 }

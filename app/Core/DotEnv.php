@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Core;
 
 use Dotenv\Repository\RepositoryBuilder;
 use Dotenv\Repository\Adapter\EnvConstAdapter;

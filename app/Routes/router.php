@@ -7,7 +7,11 @@ $router = new Router(getenv("APP_URL"));
 $router->namespace("App\Controllers");
 
 $router->group(null);
-$router->get("/", "Auth:login", "auth.login");
+$router->get("/", "Web:login", "web.login");
+$router->get("/cadastrar", "Web:register", "web.register");
+
+$router->group("auth");
+$router->post("/register", "Auth:register", "auth.register");
 
 
 $router->group("Ooops");

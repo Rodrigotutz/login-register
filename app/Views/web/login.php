@@ -4,14 +4,19 @@
     <div class="row align-content-center align-items-center" style="min-height: 100vh;">
         <div class="col-12 col-md-6 offset-md-3 mb-5 mt-5 pt-5">
             <h3 class="text-muted fw-bold text-center mb-4">Faça login para entrar</h3>
+            <div class="container mb-5 mt-5 text-center text-md-start">
+                <a href="" class="border border-1 p-3 text-md-start" style="text-decoration: none;">
+                   <span class="text-dark"> <img src="<?= images("google.png") ?>" alt="" style="width: 30px;"> faça login com o Google</span>
+                </a>
+            </div>
             <form>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email:</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                    <label for="email">Email:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Senha</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                    <label for="password">Senha:</label>
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="showKey">
@@ -21,7 +26,7 @@
                     <button type="submit" class="btn btn-dark fw-bold p-2" style="width: 150px;">Entrar</button>
                 </div>
                 <div class="text-md-end">
-                    <small class="text-muted">Ainda não tem conta? <a href="" class="text-muted text-dark">Cadastre-se!</a></small>
+                    <small class="text-muted">Ainda não tem conta? <a href="<?= $router->route('web.register') ?>" class="text-muted text-dark">Cadastre-se!</a></small>
                 </div>
             </form>
         </div>

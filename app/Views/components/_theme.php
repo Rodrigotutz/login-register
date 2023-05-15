@@ -17,6 +17,8 @@
 
     <script src="<?= js("popper.min.js")?>"></script>
     <script src="<?= js("bootstrap.min.js")?>"></script>
+
+    <?=$this->section('scripts')?>
 </body>
 
 </html>
