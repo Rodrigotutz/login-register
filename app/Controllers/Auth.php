@@ -13,20 +13,23 @@ class Auth extends Controller {
 
     public function register($data) {
 
-        $newUser = new User();
-        $newUser->first_name =  filter_var($data['first_name'], FILTER_DEFAULT);
-        $newUser->last_name =  filter_var($data['last_name'], FILTER_DEFAULT);
-        $newUser->email =  filter_var($data['email'], FILTER_DEFAULT);
-        $newUser->phone =  filter_var($data['phone'], FILTER_DEFAULT);
-        $newUser->password =  filter_var($data['password'], FILTER_DEFAULT);
-        $newUser->password_re =  filter_var($data['password_re'], FILTER_DEFAULT);
+        $user = new User();
+        $user->first_name =  $data['first_name'];
+        $user->last_name =  $data['last_name'];
+        $user->email =  $data['email'];
+        $user->phone =  $data['phone'];
+        $user->password =  $data['password'];
+        $password_re =  $data['password_re'];
 
-        if($newUser->password === $newUser->password_re) {
-            $newUser->save();
-            echo "Usuário salvo";
-        } else {
-            echo "Senha diferentes";
+        if($user->password != $password_re) {
+            $this->router->redirect("web.register", ["error" => "different-passwords"]);
         }
+
+        if(!$user->save()) {
+            $this->router->redirect("web.register", ["error" => $user->fail()->getMessage()]);
+        }
+
+        $this->router->redirect("web.login", ["success" => "user-created"]);
 
     }
 

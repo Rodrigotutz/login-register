@@ -1,6 +1,6 @@
 <?php $this->layout("components/_theme") ?>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row align-content-center align-items-center" style="min-height: 90vh;">
         <div class="col-12 col-md-6 offset-md-3 mb-5 mt-5">
             <h3 class="text-muted fw-bold text-center mb-4">Faça seu cadastro</h3>
@@ -13,28 +13,28 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-floating mb-3">
-                            <input name="first_name" type="text" class="form-control" id="name" placeholder="name@example.com" required>
+                            <input name="first_name" type="text" class="form-control" id="name" placeholder="name@example.com">
                             <label for="name">Nome:</label>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6">
                         <div class="form-floating mb-3">
-                            <input name="last_name" type="text" class="form-control" id="lastName" placeholder="name@example.com" required>
+                            <input name="last_name" type="text" class="form-control" id="lastName" placeholder="name@example.com">
                             <label for="lastName">Sobrenome:</label>
                         </div>
                     </div>  
 
                     <div class="col-12 col-md-8">
                         <div class="form-floating mb-3">
-                            <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
                             <label for="email">Email:</label>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4">
                         <div class="form-floating mb-3">
-                            <input name="phone" type="phone" class="form-control phone" id="phone" placeholder="(99) 99999-9999" required>
+                            <input name="phone" type="text" class="form-control phone" id="phone" placeholder="(99) 99999-9999">
                             <label for="phone">Telefone:</label>
                         </div>
                     </div>
@@ -42,14 +42,14 @@
 
                     <div class="col-12 col-md-6">
                         <div class="form-floating mb-3">
-                            <input name="password" type="password" class="form-control pass" id="passwd" placeholder="Password" required minlength="8">
+                            <input name="password" type="password" class="form-control pass" id="passwd" placeholder="Password">
                             <label for="passwd">Senha:</label>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6">
                         <div class="form-floating mb-3">
-                            <input name="password_re" type="password" class="form-control pass_re" id="passwdRe" placeholder="Password" required>
+                            <input name="password_re" type="password" class="form-control pass_re" id="passwdRe" placeholder="Password">
                             <label for="passwdRe">Confirmar Senha:</label>
                         </div>
                     </div>

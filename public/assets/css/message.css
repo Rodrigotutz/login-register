@@ -1,0 +1,17 @@
+.message {
+    width: 400px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    text-align: center;
+}
+
+@media(max-width: 1048px) {
+    .message {
+        position: fixed;
+        top: 10px;
+        bottom: inherit;
+        right: 10px;
+        width: 95%;
+    }
+}

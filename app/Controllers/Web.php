@@ -11,6 +11,7 @@ class Web extends Controller {
     }
 
     public function login(): void {
+
         $this->view->addData([
             "title" => "Página de Login"
         ]);
@@ -18,6 +19,7 @@ class Web extends Controller {
     }
 
     public function register(): void {
+
         $this->view->addData([
             "title" => "Página de Cadastro"
         ]);
