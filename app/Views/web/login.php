@@ -9,17 +9,17 @@
                    <span class="text-dark"> <img src="<?= images("google.png") ?>" alt="" style="width: 30px;"> faça login com o Google</span>
                 </a>
             </div>
-            <form>
+            <form method="POST" action="<?= $router->route("auth.login")?>">
                 <div class="form-floating mb-3">
-                    <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
                     <label for="email">Email:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                    <input name="password" type="password" class="form-control pass" id="password" placeholder="Password">
                     <label for="password">Senha:</label>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="showKey">
+                    <input type="checkbox" class="form-check-input showPass" id="showKey">
                     <label class="form-check-label" for="showKey">Mostrar Senha</label>
                 </div>
                 <div class="mt-5 text-center mb-5">
@@ -32,3 +32,18 @@
         </div>
     </div>
 </div>
+
+<?php $this->start('scripts') ?>
+   <script>
+    let pass = document.querySelector(".pass")
+    let showPass = document.querySelector(".showPass")
+
+    showPass.addEventListener("click", () => {
+        if(pass.type === "password") {
+            pass.type = "text"
+        } else {
+            pass.type = "password"
+        }
+    })
+   </script>
+<?php $this->stop() ?>

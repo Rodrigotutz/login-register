@@ -49,14 +49,12 @@
 
                     <div class="col-12 col-md-6">
                         <div class="form-floating mb-3">
-                            <input name="password_re" type="password" class="form-control pass_re" id="passwdRe" placeholder="Password">
+                            <input name="password_re" type="password" class="form-control passRe" id="passwdRe" placeholder="Password">
                             <label for="passwdRe">Confirmar Senha:</label>
                         </div>
                     </div>
-
                     
                 </div>
-                
                 
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input showPass" id="showKey">

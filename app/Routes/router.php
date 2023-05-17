@@ -12,7 +12,11 @@ $router->get("/cadastrar", "Web:register", "web.register");
 
 $router->group("auth");
 $router->post("/register", "Auth:register", "auth.register");
+$router->post("/login", "Auth:login", "auth.login");
 
+$router->group("home");
+$router->get("/index", "Home:index", "home.index");
+$router->get("/sair", "Home:logout", "home.logout");
 
 $router->group("Ooops");
 $router->get("/{errcode}", "Error:error", "error.error");

@@ -33,12 +33,20 @@ abstract class Controller {
                 $this->message = "Insira um e-mail válido";
             }
 
+            if($_GET['error'] === "used-email") {
+                $this->message = "O e-mail informado já está em uso!";
+            }
+
             if($_GET['error'] === "invalid-fields") {
                 $this->message = "Preencha todos os campos";
             }
 
             if($_GET['error'] === "invalid-phone") {
                 $this->message = "Insira um numero de telefone";
+            }
+
+            if($_GET['error'] === "invalid-password") {
+                $this->message = "Insira uma senha";
             }
 
             if($_GET['error'] === "invalid-password-lenght") {
@@ -48,6 +56,15 @@ abstract class Controller {
             if($_GET['error'] === "different-passwords") {
                 $this->message = "As senhas devem ser iguais";
             }
+
+            if($_GET['error'] === "login-recused") {
+                $this->message = "E-mail ou senha inválido(os)";
+            }
+
+            if($_GET['error'] === "access-recused") {
+                $this->message = "Faça login para entrar!";
+            }
+
             $this->class = "danger";
         }
     }
@@ -55,8 +72,6 @@ abstract class Controller {
     protected function success() {
         if(isset($_GET['success'])) {
             $this->message = "Usuário criado com sucesso, faça login para continuar";
-
-
             $this->class = "success";
         }
     }

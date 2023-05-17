@@ -1,5 +1,5 @@
 let pass = document.querySelector(".pass")
-let passRe = document.querySelector(".pass_re")
+let passRe = document.querySelector(".passRe")
 let showPass = document.querySelector(".showPass")
 
 showPass.addEventListener("click", () => {

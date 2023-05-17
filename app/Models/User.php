@@ -13,7 +13,7 @@ class User extends DataLayer {
 
     public function save(): bool {
 
-        if(!$this->validadeUser() || !$this->validateEmail() || !$this->validatePassword() || !$this->validatePhone() || !parent::save()) {
+        if(!$this->validadeUser() || !$this->validateEmail() || !$this->validatePhone() || !$this->validatePassword() || !parent::save()) {
             return false;
         }
 
@@ -33,6 +33,19 @@ class User extends DataLayer {
 
         if(empty($this->email) || !filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $this->fail = new Exception("invalid-email");
+            return false;
+        }
+
+        $userByEmail = null;
+
+        if(!$this->id) {
+            $userByEmail = $this->find("email = :email", "email={$this->email}")->count();
+        } else {
+            $userByEmail = $this->find("email = :email AND id != :id" , "email={$this->email}&id={$this->id}")->count();
+        }
+
+        if($userByEmail) {
+            $this->fail = new Exception("used-email");
             return false;
         }
 

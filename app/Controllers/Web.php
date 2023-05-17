@@ -8,6 +8,10 @@ class Web extends Controller {
 
     public function __construct($router) {
         parent::__construct($router);
+
+        if(isset($_SESSION['userId'])) {
+            $router->redirect("home.index");
+        }
     }
 
     public function login(): void {
