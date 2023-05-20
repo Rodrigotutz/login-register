@@ -18,6 +18,11 @@ $router->group("home");
 $router->get("/index", "Home:index", "home.index");
 $router->get("/sair", "Home:logout", "home.logout");
 
+$router->group("test");
+$router->get("/", "Test:index", "test.index");
+$router->get("/email", "Test:email", "test.email");
+$router->post("/send", "Test:send", "test.send");
+
 $router->group("Ooops");
 $router->get("/{errcode}", "Error:error", "error.error");
 

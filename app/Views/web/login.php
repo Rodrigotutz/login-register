@@ -6,7 +6,7 @@
             <h3 class="text-muted fw-bold text-center mb-4">Faça login para entrar</h3>
             <div class="container mb-4 mt-5 text-center text-md-start">
                 <a href="" class="border border-1 p-3 text-md-start" style="text-decoration: none;">
-                   <span class="text-dark"> <img src="<?= images("google.png") ?>" alt="" style="width: 30px;"> faça login com o Google</span>
+                   <span class="text-dark"> <img src="<?= images("google.png") ?>" alt="" style="width: 30px;"> Faça login com o Google</span>
                 </a>
             </div>
             <form method="POST" action="<?= $router->route("auth.login")?>">

@@ -3,15 +3,18 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Mail;
 use App\Models\User;
 
 class Auth extends Controller {
 
     private $user;
+    private $email;
 
     public function __construct($router) {
         parent::__construct($router);
         $this->user = new User();
+        $this->email = new Mail();
 
         if(isset($_SESSION['userId'])) {
             $router->redirect("home.index");
@@ -35,7 +38,16 @@ class Auth extends Controller {
             $this->router->redirect("web.register", ["error" => $this->user->fail()->getMessage()]);
         }
 
-        $this->router->redirect("web.login", ["success" => "user-created"]);
+        $this->email->add(
+            "Confirma a criação da sua conta",
+            $this->view->render("mail/email", [
+                "user" => $this->user
+            ]),
+            $this->user->first_name,
+            $this->user->email
+        )->send();
+
+        $this->router->redirect("web.login", ["success" => "user-confirm"]);
     }
 
     public function login($data) {

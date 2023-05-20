@@ -14,3 +14,8 @@ define("DATA_LAYER_CONFIG", [
         PDO::ATTR_CASE => PDO::CASE_NATURAL
     ]
 ]);
+
+define("MAIL", [
+    "from" => getenv("MAIL_FROM"),
+    "name" => getenv("MAIL_NAME")
+]);

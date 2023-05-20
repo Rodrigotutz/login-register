@@ -71,8 +71,10 @@ abstract class Controller {
 
     protected function success() {
         if(isset($_GET['success'])) {
-            $this->message = "Usuário criado com sucesso, faça login para continuar";
-            $this->class = "success";
+            if($_GET['success'] === "user-confirm") {
+                $this->message = "Confirme o seu e-mail para continuar";
+                $this->class = "warning";
+            }
         }
     }
 }
