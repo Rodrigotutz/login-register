@@ -3,7 +3,7 @@
         <h1>E-mail enviado com sucesso</h1>
         <h3>Olá <?= $user->first_name ?> <?= $user->last_name ?></h3>
         <p style="margin-bottom: 50px;">Sua conta foi criada com sucesso, basta clicar no botão abaixo para confirmar seu e-mail!</p>
-        <a href="" style="text-decoration: none; background-color: #fff ; color: #222; padding: 8px 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; ">Confirmar E-mail</a>
+        <a href="<?= $link ?>" style="text-decoration: none; background-color: #fff ; color: #222; padding: 8px 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; ">Confirmar E-mail</a>
     </div>
 
     <div style="margin-top: 50px; margin-bottom: 30px ;">

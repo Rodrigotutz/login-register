@@ -30,4 +30,12 @@ class Web extends Controller {
         echo $this->view->render('web/register');
     }
 
+    public function forget() {
+        $this->view->addData([
+            "title" => "Esqueci a senha"
+        ]);
+
+        echo $this->view->render("web/forget");
+    }
+
 }

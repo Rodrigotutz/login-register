@@ -22,6 +22,9 @@
                     <input type="checkbox" class="form-check-input showPass" id="showKey">
                     <label class="form-check-label" for="showKey">Mostrar Senha</label>
                 </div>
+                <div>
+                    <a href="<?= $router->route("web.forget") ?>">Esqueci a senha</a>
+                </div>
                 <div class="mt-5 text-center mb-5">
                     <button type="submit" class="btn btn-dark fw-bold p-2" style="width: 150px;">Entrar</button>
                 </div>

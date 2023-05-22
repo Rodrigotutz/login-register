@@ -10,12 +10,14 @@ class Error extends Controller {
         parent::__construct($router);
     }
 
-    public function Error($data): void {
+    public function index($data): void {
+
         $this->view->addData([
             "title" => "Página não encontrada",
             "errcode" => $data['errcode']
         ]);
         echo $this->view->render('error/error');
     }
+
 
 }

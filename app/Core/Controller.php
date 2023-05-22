@@ -65,6 +65,18 @@ abstract class Controller {
                 $this->message = "Faça login para entrar!";
             }
 
+            if($_GET['error'] === "user-not-confirmed") {
+                $this->message = "Confirme o seu e-mail para entrar!";
+            }
+
+            if($_GET['error'] === "access-denied") {
+                $this->message = "Acesso negado!";
+            }
+
+            if($_GET['error'] === "user-not-found") {
+                $this->message = "Usuário não encontrado";
+            }
+
             $this->class = "danger";
         }
     }
@@ -74,6 +86,11 @@ abstract class Controller {
             if($_GET['success'] === "user-confirm") {
                 $this->message = "Confirme o seu e-mail para continuar";
                 $this->class = "warning";
+            }
+
+            if($_GET['success'] === "user-confirmed") {
+                $this->message = "E-mail confirmado com sucesso, faça login para entrar!";
+                $this->class = "success";
             }
         }
     }

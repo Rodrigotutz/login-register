@@ -21,7 +21,36 @@ class Auth extends Controller {
         }
     }
 
-    public function register($data) {
+    public function login($data): void {
+
+        $email = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
+        $password = filter_var($data['password'], FILTER_DEFAULT);
+
+        if(!$email || !$password) {
+            $this->router->redirect("web.login", ["error" => "invalid-fields"]);
+        }
+
+        $userByEmail = $this->user->find("email = :email", "email={$email}")->fetch();
+
+        if(!$userByEmail) {
+            $this->router->redirect("web.login", ["error" => "login-recused"]);
+        }
+        
+        if(!password_verify($password, $userByEmail->password)) {
+            $this->router->redirect("web.login", ["error" => "login-recused"]);
+        }
+
+        if($userByEmail->confirmed === 0) {
+            $this->router->redirect("web.login", ["error" => "user-not-confirmed"]);
+        }
+
+        $_SESSION['userId'] = $userByEmail->id;
+
+        $this->router->redirect("home.index");
+
+    }
+
+    public function register($data): void {
         
         $this->user->first_name =  $data['first_name'];
         $this->user->last_name =  $data['last_name'];
@@ -41,7 +70,10 @@ class Auth extends Controller {
         $this->email->add(
             "Confirma a criação da sua conta",
             $this->view->render("mail/email", [
-                "user" => $this->user
+                "user" => $this->user,
+                "link" => $this->router->route("auth.confirm", [
+                    "email" => $this->user->email
+                ])
             ]),
             $this->user->first_name,
             $this->user->email
@@ -50,29 +82,52 @@ class Auth extends Controller {
         $this->router->redirect("web.login", ["success" => "user-confirm"]);
     }
 
-    public function login($data) {
+    public function confirm($data) {
 
         $email = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
-        $password = filter_var($data['password'], FILTER_DEFAULT);
 
-        if(!$email || !$password) {
-            $this->router->redirect("web.login", ["error" => "invalid-fields"]);
+        if(!$email) {
+            $this->router->redirect("web.register", [
+                "error" => "access-denied"
+            ]);
         }
 
         $userByEmail = $this->user->find("email = :email", "email={$email}")->fetch();
 
         if(!$userByEmail) {
-            $this->router->redirect("web.login", ["error" => "login-recused"]);
+            $this->router->redirect("web.login", [
+                "error" => "user-not-found"
+            ]);
         }
 
-        if(!password_verify($password, $userByEmail->password)) {
-            $this->router->redirect("web.login", ["error" => "login-recused"]);
+        $this->view->addData([
+            "title" => "Confirme o seu e-mail",
+            "user" => $userByEmail
+        ]);
+
+        echo $this->view->render("web/confirm");
+    }
+
+    public function confirmed($data) {
+        $email = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
+
+        if(!$email) {
+            $this->router->redirect("web.register", [
+                "error" => "access-denied"
+            ]);
         }
 
-        $_SESSION['userId'] = $userByEmail->id;
+        $userByEmail = $this->user->find("email = :email", "email={$email}")->fetch();
 
-        $this->router->redirect("home.index");
-
+        if(!$userByEmail) {
+            $this->router->redirect("web.login", [
+                "error" => "user-not-found"
+            ]);
+        }
+        
+        $userByEmail->confirmed = 1;
+        $userByEmail->save();
+        $this->router->redirect("web.login", ["success" => "user-confirmed"]);
     }
 
 }

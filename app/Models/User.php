@@ -57,12 +57,12 @@ class User extends DataLayer {
             $this->fail = new Exception("invalid-password");
             return false;
         }   
-
+        
         if(strlen($this->password) < 8) {
             $this->fail = new Exception("invalid-password-lenght");
             return false;
         }
-
+        
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return true;
     }
